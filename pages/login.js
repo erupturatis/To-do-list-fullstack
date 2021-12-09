@@ -5,6 +5,7 @@ import BtnLogin from "../Components/BtnLogin";
 
 const Login = ({ getProviders, session }) => {
   if (session) return null;
+
   return (
     <div>
       <div className="flex text-2xl justify-center mt-10">
