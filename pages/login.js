@@ -1,11 +1,17 @@
 import React from "react";
 import { getSession, getProviders } from "next-auth/react";
+import { useEffect } from "react";
+
+import Router from "next/router";
 
 import BtnLogin from "../Components/BtnLogin";
 
 const Login = ({ getProviders, session }) => {
-  if (session) return null;
-
+  useEffect(() => {
+    if (session) {
+      return Router.push("/");
+    }
+  }, []);
   return (
     <div>
       <div className="flex text-2xl justify-center mt-10">

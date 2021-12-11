@@ -1,8 +1,8 @@
 import { signIn, signOut, useSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
 
-export default function Home() {
-  const { data: session } = useSession();
-
+export default function Home({ session }) {
+  console.log(session);
   if (session) {
     return (
       <>
@@ -17,8 +17,23 @@ export default function Home() {
     <>
       Not signed in <br />
       <div>
-        <button onClick={() => signIn()}>logintogithub</button>
+        <button onClick={() => signIn()}>login</button>
       </div>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: { session },
+  };
 }
