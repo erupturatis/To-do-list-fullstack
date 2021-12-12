@@ -24,8 +24,9 @@ export default NextAuth({
     signIn: "/login",
   },
   callbacks: {
-    redirect: ({ url, baseUrl }) => {
-      return baseUrl;
+    async session({ session, user, token }) {
+      //console.log({ session, user, token });
+      return session;
     },
   },
 });

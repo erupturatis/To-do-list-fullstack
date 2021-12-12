@@ -1,8 +1,10 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import { getSession } from "next-auth/react";
 
+import TodoInput from "../Components/TodoInput";
+
 export default function Home({ session }) {
-  console.log(session);
+  //console.log(session);
   if (session) {
     return (
       <>
@@ -10,6 +12,7 @@ export default function Home({ session }) {
         <div>
           <button onClick={() => signOut()}>signout</button>
         </div>
+        <TodoInput />
       </>
     );
   }
@@ -19,6 +22,7 @@ export default function Home({ session }) {
       <div>
         <button onClick={() => signIn()}>login</button>
       </div>
+      <TodoInput />
     </>
   );
 }
